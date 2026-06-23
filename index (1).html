@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Amy 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush:    #f5d6d6;
+      --rose:     #e8a0a0;
+      --dusty:    #c97b7b;
+      --petal:    #fce9e9;
+      --cream:    #fdf6f0;
+      --text:     #3a2a2a;
+      --soft:     #7a5c5c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── Floating petals ── */
+    .petals-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -60px;
+      font-size: 1.4rem;
+      opacity: 0.55;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      background: linear-gradient(160deg, #fce9e9 0%, #fdf6f0 50%, #f9e4e4 100%);
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dusty);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 10vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--dusty);
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--soft);
+      margin-top: 1.2rem;
+      max-width: 480px;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.8rem;
+    }
+    .badge {
+      background: white;
+      border: 1px solid var(--blush);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem;
+      color: var(--dusty);
+      letter-spacing: 0.04em;
+    }
+
+    .scroll-hint {
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--rose);
+      text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ── SECTION WRAPPER ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 1.8rem;
+    }
+    .section-title em { font-style: italic; color: var(--dusty); }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--rose);
+      margin: 0 0 2rem 0;
+    }
+
+    /* ── LETTER ── */
+    .letter-card {
+      background: white;
+      border: 1px solid var(--blush);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: var(--soft);
+      position: relative;
+    }
+    .letter-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: var(--blush);
+      position: absolute;
+      top: -1.5rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+    .letter-sign {
+      margin-top: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--dusty);
+    }
+
+    /* ── DATES STRIP ── */
+    .dates-strip {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .date-pill {
+      background: white;
+      border: 1px solid var(--blush);
+      border-radius: 16px;
+      padding: 1.2rem 1.8rem;
+      text-align: center;
+      min-width: 140px;
+      box-shadow: 0 2px 12px rgba(200,120,120,0.07);
+    }
+    .date-pill .emoji { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .date-pill .d-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose); }
+    .date-pill .d-date { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--text); margin-top: 0.2rem; }
+
+    /* ── MEMORIES GRID ── */
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.4rem;
+    }
+    .memory-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--blush);
+      box-shadow: 0 4px 20px rgba(200,120,120,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .memory-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(200,120,120,0.15);
+    }
+    .memory-card img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .memory-card.landscape img { aspect-ratio: 4/3; }
+    .memory-caption {
+      padding: 1rem 1.2rem 1.2rem;
+    }
+    .memory-caption .cap-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.3rem;
+    }
+    .memory-caption p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--soft);
+      line-height: 1.5;
+    }
+
+    /* ── LOVE LIST ── */
+    .love-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .love-item {
+      background: white;
+      border: 1px solid var(--blush);
+      border-radius: 16px;
+      padding: 1.4rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      transition: transform 0.25s;
+    }
+    .love-item:hover { transform: translateY(-4px); }
+    .love-item .love-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .love-item p { font-size: 0.95rem; color: var(--soft); line-height: 1.5; }
+    .love-item strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 0.2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(160deg, #f9e4e4 0%, #fce9e9 100%);
+      text-align: center;
+      padding: 4rem 1.5rem 5rem;
+    }
+    footer h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+    footer h2 em { color: var(--dusty); font-style: italic; }
+    footer p {
+      color: var(--soft);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer-from {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--dusty);
+      margin-top: 2rem;
+    }
+
+    /* ── STRIPE BETWEEN SECTIONS ── */
+    .stripe {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blush), transparent);
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 540px) {
+      .letter-card { padding: 2rem 1.4rem; }
+      .memories-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .love-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div class="petals-bg" id="petals"></div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <p class="hero-eyebrow">a little something made just for you ✦</p>
+  <h1>Happy Birthday,<br/><em>Amy.</em></h1>
+  <p class="hero-sub">my lady boss, my tidi, my favourite person on this planet 🌸</p>
+  <div class="hero-badges">
+    <span class="badge">✦ Ayman</span>
+    <span class="badge">🎂 24 June</span>
+    <span class="badge">💫 Lady Boss Era</span>
+  </div>
+  <p class="scroll-hint">↓ scroll through our story ↓</p>
+</div>
+
+<div class="stripe"></div>
+
+<!-- ── LOVE LETTER ── -->
+<section>
+  <p class="section-label">from Zeen, with love</p>
+  <h2 class="section-title">A little <em>letter</em> for you</h2>
+  <div class="divider"></div>
+  <div class="letter-card">
+    <p>
+      Amy. My lady boss. My tidi (don't come after me for this one 😭).
+    </p>
+    <br/>
+    <p>
+      I made this because words in a text just weren't enough for today. You deserve something you can come back to — on a bad day, on a random Tuesday, or just whenever you forget how much you matter.
+    </p>
+    <br/>
+    <p>
+      You walked into my life and completely changed the definition of what it means to have someone. The way you love people — quietly, fiercely, without keeping score — is one of the most beautiful things I've ever witnessed. You make everyone around you feel seen, and I don't think you even realise it.
+    </p>
+    <br/>
+    <p>
+      You're the girl who can be soft and strong at the same time. The one who texts me good morning, argues about directions, and still makes everything feel okay. You push me when I'm slacking, hype me up when I'm doubting myself, and somehow always know what to say before I even say what's wrong.
+    </p>
+    <br/>
+    <p>
+      So yeah. Happy Birthday, Amy. This website is mine to give, and yours to keep — forever.
+    </p>
+    <p class="letter-sign">— Zeen 🤍</p>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- ── OUR DATES ── -->
+<section>
+  <p class="section-label">the dates that changed everything</p>
+  <h2 class="section-title">Our <em>story</em> in three dates</h2>
+  <div class="divider"></div>
+  <div class="dates-strip">
+    <div class="date-pill">
+      <div class="emoji">🥂</div>
+      <div class="d-label">Anniversary</div>
+      <div class="d-date">3 Nov</div>
+    </div>
+    <div class="date-pill">
+      <div class="emoji">🌹</div>
+      <div class="d-label">First Date</div>
+      <div class="d-date">3 Dec 2025</div>
+    </div>
+    <div class="date-pill">
+      <div class="emoji">🎂</div>
+      <div class="d-label">Your Birthday</div>
+      <div class="d-date">24 June 2026</div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- ── MEMORIES ── -->
+<section>
+  <p class="section-label">us, unfiltered</p>
+  <h2 class="section-title">Our <em>memories</em></h2>
+  <div class="divider"></div>
+  <div class="memories-grid">
+
+    <div class="memory-card">
+      <img src="IMG_1405.jpeg" alt="Amy with flowers at night"/>
+      <div class="memory-caption">
+        <p>Flowers in hand, sunset behind you — you didn't even try and still looked like that. 🌙</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1401.jpeg" alt="Mirror selfie together at wedding"/>
+      <div class="memory-caption">
+        <p>Caught in a mirror at someone else's wedding, making it our own little moment. Zeen:3 🪞</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1409.jpeg" alt="Matching green outfits night out"/>
+      <div class="memory-caption">
+        <p>We showed up in matching green and nobody told us we were that couple. No regrets. 💚</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1411.jpeg" alt="Flower surprise night"/>
+      <div class="memory-caption">
+        <p>Roses at night, your reaction — blurry photo, clearest memory. That look said everything. 🌹</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1410.jpeg" alt="Walking together at night"/>
+      <div class="memory-caption">
+        <p>Walking side by side like we owned the street. Honestly though — we did. 🌃</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1414.jpeg" alt="Flower wrists in car"/>
+      <div class="memory-caption">
+        <p>Flower garlands on your wrists, a can of Coke, and our hands close enough. Simple and perfect. 🌺</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1415.jpeg" alt="Holding hands in car at night"/>
+      <div class="memory-caption">
+        <p>Late nights, city lights, and you next to me. Our best conversations happened right here. 🚗</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1412.jpeg" alt="Teddy and driving — gift night"/>
+      <div class="memory-caption">
+        <p>Playlist on, teddy riding shotgun. Dropping off surprises is literally my love language. 🧸</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1407.jpeg" alt="Outdoor event selfie together"/>
+      <div class="memory-caption">
+        <p>Bunked nothing this time but still felt like getting away with something just being next to you. 😌</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1404.jpeg" alt="Graduation robes together"/>
+      <div class="memory-caption">
+        <p>You fixed my robe and I tried to act like I wasn't melting on the spot. Class of 2026, together. 🎓</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1416.jpeg" alt="Driving with sunflower"/>
+      <div class="memory-caption">
+        <p>One sunflower. One drive. "For A Reason" playing. This is what I'd put on replay forever. 🌻</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1413.jpeg" alt="Amy driving at dusk"/>
+      <div class="memory-caption">
+        <p>You drive like you do everything — with full confidence and a little bit of chaos. 😍</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1406.jpeg" alt="Driving — Galian 4 on screen"/>
+      <div class="memory-caption">
+        <p>That song, that drive, those vibes. Some playlists just belong to one person. 🎵</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1402.jpeg" alt="Class of 2026 trophies — Aiman & Zaheen"/>
+      <div class="memory-caption">
+        <p>"Timeless Beauty" for you. "Personal Unpaid Uber" for me. The college knew what it was doing. 😭🏆</p>
+      </div>
+    </div>
+
+    <div class="memory-card">
+      <img src="IMG_1403.jpeg" alt="Late night drive with roses"/>
+      <div class="memory-caption">
+        <p>Red lights, red roses, red feelings. Every late night drive with you is its own little world. 🌹</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- ── THINGS I LOVE ── -->
+<section>
+  <p class="section-label">always & forever</p>
+  <h2 class="section-title">Things I <em>love</em> about you</h2>
+  <div class="divider"></div>
+  <div class="love-grid">
+
+    <div class="love-item">
+      <span class="love-icon">😊</span>
+      <p><strong>That smile</strong>The kind that makes you forget what you were even saying. Illegal, honestly.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">✨</span>
+      <p><strong>Those eyes</strong>They say everything you don't — and still somehow say too much.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">🫧</span>
+      <p><strong>Your laugh</strong>When you really laugh — the uncontrollable, baby-like kind — it's my favourite sound.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">🤝</span>
+      <p><strong>How you love your people</strong>The way you show up for those you care about is rare. Genuinely rare.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">🕊️</span>
+      <p><strong>Your politeness</strong>Even when you have every right to snap, you choose grace. That's strength.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">🎯</span>
+      <p><strong>Your ambition</strong>You know what you want and you go after it. Watching you is nothing short of inspiring.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">☀️</span>
+      <p><strong>Your positivity</strong>You carry light even on heavy days. I don't know how you do it — but I'm glad you do.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">🌱</span>
+      <p><strong>How you grew for us</strong>The changes you made, quietly and lovingly — I see them. I appreciate them more than I say.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">💬</span>
+      <p><strong>What you say about me behind my back</strong>You hype me up when I'm not in the room. That's real love right there.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">🚀</span>
+      <p><strong>How you encourage me</strong>On my worst days you remind me of my worth. I couldn't do without that.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">👏</span>
+      <p><strong>How you appreciate</strong>You notice the small things and say something. That matters more than you know.</p>
+    </div>
+
+    <div class="love-item">
+      <span class="love-icon">👑</span>
+      <p><strong>The whole package</strong>Lady Boss. Meri Amy. My tidi. You're everything — and you probably know it.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <h2>Happy Birthday,<br/><em>Amy. 🌸</em></h2>
+  <p>You deserve every good thing — today, and every day after.</p>
+  <p style="font-size:0.85rem; color:var(--rose);">
+    3 Nov · 3 Dec · 24 June 2026 · and every day in between 🤍
+  </p>
+  <p class="footer-from">Made with too much love by Zeen ✦</p>
+</footer>
+
+<script>
+  // Generate floating petals
+  const container = document.getElementById('petals');
+  const symbols = ['🌸','🌷','✿','❀','🌺','·','˚'];
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (8 + Math.random() * 14) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    p.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+    container.appendChild(p);
+  }
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.memory-card, .love-item, .date-pill, .letter-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
